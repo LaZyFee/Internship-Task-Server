@@ -99,3 +99,12 @@ export const checkAdmin = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 };
+
+export const logoutUser = async (req, res) => {
+    try {
+        res.json({ message: "Logout successful" });
+    } catch (error) {
+        console.error("Error logging out:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
