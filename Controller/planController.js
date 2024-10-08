@@ -20,6 +20,7 @@ export const getPlansBySize = async (req, res) => {
         const filteredPlans = plans.map(plan => {
             if (plan.account_sizes[size]) {
                 return {
+                    _id: plan._id,  // Include the _id of the plan
                     plan_name: plan.plan_name,
                     details: plan.account_sizes[size],  // Return the account size details
                 };
@@ -41,18 +42,18 @@ export const getPlansBySize = async (req, res) => {
 
 export const updatePlan = async (req, res) => {
     try {
+        console.log("Updating Plan ID: ", req.params.id);  // Ensure this logs the correct _id
         const plan = await PlanModel.findByIdAndUpdate(
             req.params.id,
             req.body,  // Assuming req.body contains the updated details
             { new: true }
         );
-        res.json(plan);
+        res.json(plan);  // Send updated plan back to the frontend
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 };
-
 
 export const deletePlan = async (req, res) => {
     try {
