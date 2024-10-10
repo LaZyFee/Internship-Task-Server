@@ -10,14 +10,14 @@ import paymentRoutes from "./Routes/paymentRoutes.js";
 dotenv.config();
 
 const app = express();
-// app.use(cors({
-//     origin: "http://localhost:5174",
-//     credentials: true
-// }));
 app.use(cors({
-    origin: true,
+    origin: "https://internship-task-hr.netlify.app/",
     credentials: true
 }));
+// app.use(cors({
+//     origin: true,
+//     credentials: true
+// }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
