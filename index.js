@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-    origin: "https://internship-task-hr.netlify.app/",
+    origin: "https://internship-task-hr.netlify.app",
     credentials: true
 }));
 // app.use(cors({
