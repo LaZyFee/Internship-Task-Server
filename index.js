@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/", authRoutes);
 app.use("/api/", planRoutes);
-app.use("api/", paymentRoutes);
+app.use("/api/", paymentRoutes);
 
 // Start server and connect to the database
 app.listen(PORT, () => {
