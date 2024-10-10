@@ -6,18 +6,15 @@ import authRoutes from "./Routes/authRoutes.js";
 import planRoutes from "./Routes/planRoutes.js";
 import paymentRoutes from "./Routes/paymentRoutes.js";
 
-
 dotenv.config();
 
 const app = express();
+
+// Correct CORS configuration
 app.use(cors({
     origin: "https://internship-task-hr.netlify.app",
     credentials: true
 }));
-// app.use(cors({
-//     origin: true,
-//     credentials: true
-// }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,7 +29,7 @@ app.use("/", authRoutes);
 app.use("/", planRoutes);
 app.use("/", paymentRoutes);
 
-
+// Start server and connect to the database
 app.listen(PORT, () => {
     connectDB();
     console.log(`Server running at http://localhost:${PORT}`);
