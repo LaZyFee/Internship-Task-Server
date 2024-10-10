@@ -5,6 +5,8 @@ import { connectDB } from "./DB/connectDB.js";
 import authRoutes from "./Routes/authRoutes.js";
 import planRoutes from "./Routes/planRoutes.js";
 import paymentRoutes from "./Routes/paymentRoutes.js";
+import mongoose from "mongoose";
+
 
 dotenv.config();
 
@@ -19,6 +21,20 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const connectMDB = async () => {
+    const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.9e7m0jr.mongodb.net/Internship-task?retryWrites=true&w=majority&appName=Cluster0`;
+
+    // const uri = process.env.MONGO_CONNECTION_STRING;
+
+    try {
+        await mongoose.connect(uri);
+        console.log("MongoDB connected");
+    } catch (error) {
+        console.error("Failed to connect to MongoDB:", error);
+    }
+};
+
+
 const PORT = process.env.PORT || 5001;
 
 app.get("/", (req, res) => {
@@ -31,6 +47,6 @@ app.use("/", paymentRoutes);
 
 // Start server and connect to the database
 app.listen(PORT, () => {
-    connectDB();
+    connectMDB();
     console.log(`Server running at http://localhost:${PORT}`);
 });
