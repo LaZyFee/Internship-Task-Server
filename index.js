@@ -28,9 +28,9 @@ app.get("/", (req, res) => {
     res.send("Hello World! from Internship - Task backend");
 });
 
-app.use("/", authRoutes);
-app.use("/", planRoutes);
-app.use("/", paymentRoutes);
+app.use("/api/", authRoutes);
+app.use("/api/", planRoutes);
+app.use("api/", paymentRoutes);
 
 // Start server and connect to the database
 app.listen(PORT, () => {
