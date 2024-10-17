@@ -26,15 +26,15 @@ const PORT = process.env.PORT || 5001;
 // Root route
 app.get("/", (req, res) => {
     res.send("Hello World! from Internship - Task backend");
+
 });
 
-// API routes with '/api' prefix
-app.use("/api/auth", authRoutes);
-app.use("/api/plans", planRoutes);
-app.use("/api/payments", paymentRoutes);
+app.use("/", authRoutes);
+app.use("/", planRoutes);
+app.use("/", paymentRoutes);
 
 // Start server and connect to the database
 app.listen(PORT, () => {
-    connectDB(); // Connect to MongoDB
+    connectDB();
     console.log(`Server running at http://localhost:${PORT}`);
 });
